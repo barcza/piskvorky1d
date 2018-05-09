@@ -1,6 +1,6 @@
-#from random import randrange
 import ai
 from copy import deepcopy
+
 
 # defaultni predpoklad
 symbol_komplu = "o"
@@ -43,7 +43,8 @@ def tah_hrace(pole):
     """hráč táhne na pozici, kterou si vybral"""
 
     while True:
-        position = input("Na jaké pozici chceš táhnout? 1-20 ")
+        #zadáme pozici podle toho, jak je velké pole. uděláme to po lidsku od 1.
+        position = input("Na jaké pozici chceš táhnout? 1-{0} ".format(ai.delka_pole))
 
         try:
             pozice = int(position) - 1
@@ -51,8 +52,8 @@ def tah_hrace(pole):
             print("Mělo by to být číslo...")
         else:
 
-            if (pozice < 0) or (pozice > 19):
-                print("Má to být číslo od 1 do 20.")
+            if (pozice < 0) or (pozice > ai.delka_pole):
+                print("Má to být číslo od 1 do {0}".format(ai.delka_pole))
             elif pole[pozice] != "-":
                 print("Tam už někdo hrál.")
             else:
@@ -61,7 +62,7 @@ def tah_hrace(pole):
 def piskvorky1d():
     """zahraje hráč, zahraje počítač, vyhodnotíme, furt dokola, dokud je kam hrát"""
 
-    pole = "--------------------"
+    pole = "-" * ai.delka_pole
     print_pole(pole)
 
     while vyhodnot(pole) == "-":
