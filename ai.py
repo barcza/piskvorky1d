@@ -45,3 +45,6 @@ def tah_pocitace(pole):
             pozice = randrange(0, delka_pole)
             if pole[pozice] == '-':
                 return tah(pole, pozice, 'P')
+
+    if (pole == "") or ("-" not in pole):
+        raise Exception("je to nějaké polámané, zkus to znovu")
